@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Successful Menu Response Schema",
+  "description": "JSON Schema for a successful Menu response",
+  "type": "object",
+  "required": [
+    "starter",
+    "mainCourse",
+    "dessert",
+    "drink",
+    "menuPreparationTime",
+    "menuTotalCalories"
+  ],
+  "properties": {
+    "starter": {
+      "type": "object",
+      "description": "The starter of the menu",
+      "required": ["name", "type", "preparationTime", "source", "ingredients", "detailedIngredients", "instructions"]
+    },
+    "mainCourse": {
+      "type": "object",
+      "description": "The main course of the menu",
+      "required": ["name", "type", "preparationTime", "source", "ingredients", "detailedIngredients", "instructions"]
+    },
+    "dessert": {
+      "type": "object",
+      "description": "The dessert of the menu",
+      "required": ["name", "type", "preparationTime", "source", "ingredients", "detailedIngredients", "instructions"]
+    },
+    "drink": {
+      "type": "object",
+      "description": "The drink of the menu",
+      "required": ["name", "type", "alcoholic", "ingredients", "detailedIngredients", "instructions"]
+    },
+    "menuPreparationTime": {
+      "type": "string",
+      "description": "The total time of the preparation of the menu without drink"
+    },
+    "menuTotalCalories": {
+      "type": "string",
+      "description": "The total calories of the menu without drink"
+    }
+
+},
+  "additionalProperties": false
+}

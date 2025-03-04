@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.example.com/cocktail"
+            targetNamespace="http://www.example.com/cocktail"
+            elementFormDefault="qualified">
+
+    <!--Definition of recipe complex type-->
+    <xsd:complexType name="recipeCplxType">
+        <xsd:sequence>
+            <xsd:element type="xsd:string" name="Alcoholic"/>
+            <xsd:element type="xsd:string" name="Category"/>
+            <xsd:element type="xsd:string" name="GlassType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!--Definition of IngredientsList complex type-->
+    <xsd:complexType name="IngredientsListCplxType">
+        <xsd:sequence>
+            <xsd:element type="xsd:string" name="Ingredient" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <!--Definition of IngredientDetails complex type-->
+    <xsd:complexType name="IngredientDetailsType">
+        <xsd:sequence>
+            <xsd:element type="xsd:string" name="Text"/>
+            <xsd:element type="xsd:string" name="Name"/>
+            <xsd:element type="xsd:string" name="Measure"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!--Definition of IngredientsDetails complex type-->
+    <xsd:complexType name="IngredientsDetailsCplxType">
+        <xsd:sequence>
+            <xsd:element type="IngredientDetailsType" name="IngredientDetails" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!--Definition of cocktail complex type-->
+    <xsd:complexType name="cocktailCplxType">
+        <xsd:sequence>
+            <xsd:element type="xsd:string" name="CocktailName"/>
+            <xsd:element type="recipeCplxType" name="RecipeType"/>
+            <xsd:element type="xsd:string" name="Image"/>
+            <xsd:element type="IngredientsListCplxType" name="IngredientsList"/>
+            <xsd:element type="IngredientsDetailsCplxType" name="IngredientsDetails"/>
+            <xsd:element type="xsd:string" name="Instructions"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!--Definition of type response-->
+    <xsd:complexType name="response">
+        <xsd:choice>
+            <xsd:sequence>
+                <xsd:element type="xsd:string" name="CocktailName"/>
+                <xsd:element type="recipeCplxType" name="RecipeType"/>
+                <xsd:element type="xsd:string" name="Image"/>
+                <xsd:element type="IngredientsListCplxType" name="IngredientsList"/>
+                <xsd:element type="IngredientsDetailsCplxType" name="IngredientsDetails"/>
+                <xsd:element type="xsd:string" name="Instructions"/>
+            </xsd:sequence>
+            <xsd:sequence>
+                <xsd:element type="xsd:string" name="api_failed"/>
+                <xsd:element type="xsd:string" name="error"/>
+            </xsd:sequence>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <!--Principal element-->
+    <xsd:element name="Cocktail" type="response"/>
+</xsd:schema>

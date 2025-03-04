@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.example.com/cuisine"
+            targetNamespace="http://www.example.com/cuisine"
+            elementFormDefault="qualified">
+
+
+
+    <xsd:complexType name="RecipeDescription">
+        <xsd:sequence>
+            <xsd:element name="cuisineType" type="xsd:string"/>
+            <xsd:element name="mealType" type="xsd:string"/>
+            <xsd:element name="dishType" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="RecipeSource">
+        <xsd:sequence>
+            <xsd:element name="source" type="xsd:string"/>
+            <xsd:element name="url" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ingredientLines">
+        <xsd:sequence>
+            <xsd:element name="ingredient" type="xsd:string" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ingredientDetails">
+        <xsd:sequence>
+            <xsd:element name="text" type="xsd:string"/>
+            <xsd:element name="quantity" type="xsd:string"/>
+            <xsd:element name="measure" type="xsd:string"/>
+            <xsd:element name="food" type="xsd:string"/>
+            <xsd:element name="weight" type="xsd:string"/>
+            <xsd:element name="foodCategory" type="xsd:string"/>
+            <xsd:element name="foodId" type="xsd:string"/>
+            <xsd:element name="image" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ingredientsDetails">
+        <xsd:sequence>
+            <xsd:element type="ingredientDetails"  name ="ingredientDetails" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="healthLabels">
+        <xsd:sequence>
+            <xsd:element name="healthLabel" type="xsd:string" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="response">
+        <xsd:choice>
+            <xsd:sequence >
+                <xsd:element name="RecipeName" type="xsd:string"/>
+                <xsd:element type="RecipeDescription" name ="RecipeDescription"/>
+                <xsd:element name ="image" type="xsd:string"/>
+                <xsd:element name="RecipeSource" type="RecipeSource" />
+                <xsd:element name="calories" type ="xsd:string"/>
+                <xsd:element name="totalTime" type ="xsd:string"/>
+                <xsd:element name="ingredientLines" type="ingredientLines"/>
+                <xsd:element name="ingredientsDetails" type="ingredientsDetails"/>
+                <xsd:element name="healthLabels" type="healthLabels"/>
+            </xsd:sequence>
+            <xsd:sequence>
+                <xsd:element type="xsd:string" name="api_failed"/>
+                <xsd:element type="xsd:string" name="error"/>
+            </xsd:sequence>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <!--principal element -->
+    <xsd:element name="Recipe" type="response"/>
+
+</xsd:schema>
+
+
+
+
